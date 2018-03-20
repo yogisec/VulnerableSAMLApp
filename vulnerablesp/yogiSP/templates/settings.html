@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Here you can adjust the security settings for this application.</p>
+
+    <table class="table table-striped">
+      <thead>
+        <th>Setting</th><th>Values</th>
+      </thead>
+	<tbody>
+	{% if currentSettings %}
+		{% for key, value in currentSettings.iteritems() %}
+		<tr><td>{{ key }}</td>
+		<td><ul class="list-unstyled">
+		<li>{{ value }}</li>            	
+          </ul></td></tr>
+        	{% endfor %}
+	{% endif %}
+      </tbody>
+    </table>	 
+
+
+
+<h3>SAML Security Settings</h2>
+<form action="/update" method="post">
+    <label>Want Messages Signed: </label> <input type="checkbox" id="checkbox" name="wantMessagesSigned"/><br />
+<label>Valid Message Signatures: </label> <input type="checkbox" id="checkbox" name="validMessage"/><br />
+    <label>Want Assertions Signed: </label> <input type="checkbox" id="checkbox" name="wantAssertionsSigned"/><br />
+ <label>Valid Assertion Signatures: </label> <input type="checkbox" id="checkbox" name="validAssertion"/><br />
+    <label>Want Metadata Signed: </label> <input type="checkbox" id="checkbox" name="signMetadata"><br />
+    <input type="submit" value="Apply Changes"></input>
+</form>
+<br />
+
+{% endblock %}

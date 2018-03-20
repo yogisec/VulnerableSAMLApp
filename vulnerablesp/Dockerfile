@@ -1,0 +1,25 @@
+FROM ubuntu:latest
+
+RUN apt-get update -y
+RUN apt-get install -y python2.7
+RUN apt-get install -y python2.7-dev
+RUN apt-get install -y libxmlsec1
+RUN apt-get install -y libxmlsec1-dev
+RUN apt-get install -y git
+RUN apt-get install -y python-pip
+RUN apt-get install -y python-dev
+RUN apt-get install -y build-essential
+RUN pip install --upgrade pip
+RUN pip install -U setuptools
+
+COPY . /vulnerableSP
+WORKDIR /vulnerableSP
+
+RUN pip install -r requirements.txt
+
+RUN python /vulnerableSP/setup.py install
+
+EXPOSE 8000
+
+WORKDIR /vulnerableSP/yogiSP
+CMD ["python", "index.py"]

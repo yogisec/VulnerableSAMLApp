@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Yogi's Vulnerable SAML App</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<ul class="nav navbar-nav">
+		<p class="navbar-text"><a href="/">Yogi's Saml App</a></p>
+		{% if paint_logout %}
+		  <li><a href="/?slo">Logout</a></li>
+		{% else %}
+		  <li><a href="/?sso2">Login and access to attrs page</a></li>
+		{% endif %}
+		  <li><a href="/settings">Saml Config</a></li>
+		  <li><a href="/#">Learn More</a></li>
+		{% if paint_logout %}
+  			{% if attributes %}
+				{% for attr in attributes %}
+					{% if attr.0 == 'firstName' %}
+						{% for val in attr.1 %}
+						<p class="navbar-text navbar-right">Singed in as: {{ val }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endif %}
+		</ul>
+	</div>
+</nav>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
+

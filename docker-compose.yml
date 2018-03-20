@@ -1,0 +1,10 @@
+version: '2'
+services:
+  idp:
+    build: vulnerableidp
+    ports:
+      - "80:80"
+  sp:
+    build: vulnerablesp
+    ports:
+      - "8000:8000"

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Here you can configure the applications security preferences and the IDP information.</p>
+<h2>Application Security Preferences:</h2>
+
+<h2>IDP Intity Information</h2>
+<form>
+    <label>SSO URL:</label> <input id="text" name="ssoURL" size="80"/><br />
+    <label>SLO URL:</label> <input id="text" name="sloURL" size="80"/><br />
+    <label>Cert:</label> <input id="text" name="cert" size="80"/><br />
+</form>
+
+
+{% endblock %}
