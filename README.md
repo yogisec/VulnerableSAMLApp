@@ -10,3 +10,19 @@ docker-compose up
 ```
 
 The images will build and then the web application will be hosted at http://127.0.0.1:8000
+
+To login as an unpriviledged user:
+  ```
+  Username: yogi
+  Password: bear
+  ```
+
+Admin user:
+  ```
+  Username: admin
+  Password: adminpassword
+  ```
+  
+To upgrade priviledges after logging in as the 'yogi' user change the group membership in the SAML message from 'users' to 'admin'
+
+More details/instructions are in the works.
