@@ -171,5 +171,15 @@ def update():
 
     return redirect('/settings/')
 
+@app.route('/learn/')
+def learnPage():
+    paint_logout = False
+    attributes = False
+
+    if 'samlUserdata' in session:
+	    paint_logout = True
+
+    return render_template('learn.html', paint_logout=paint_logout, attributes=attributes)
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True)

@@ -24,13 +24,8 @@
 	<div class="container">
 		<ul class="nav navbar-nav">
 		<p class="navbar-text"><a href="/">Yogi's Saml App</a></p>
-		{% if paint_logout %}
-		  <li><a href="/?slo">Logout</a></li>
-		{% else %}
-		  <li><a href="/?sso2">Login and access to attrs page</a></li>
-		{% endif %}
-		  <li><a href="/settings">Saml Config</a></li>
-		  <li><a href="/#">Learn More</a></li>
+		  <li><a href="/settings">Saml Settings</a></li>
+		  <li><a href="/learn">Learn More</a></li>
 		{% if paint_logout %}
   			{% if attributes %}
 				{% for attr in attributes %}
@@ -41,6 +36,11 @@
 					{% endif %}
 				{% endfor %}
 			{% endif %}
+		{% endif %}
+		{% if paint_logout %}
+			<li><a href="/?slo">Logout</a></li>
+		{% else %}
+			<li><a href="/?sso2">Login and access to attrs page</a></li>
 		{% endif %}
 		</ul>
 	</div>
