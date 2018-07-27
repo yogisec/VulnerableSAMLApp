@@ -2,7 +2,7 @@
 
 {% block content %}
 <p>Here you can adjust the security settings for this application.</p>
-
+<form action="/update" method="post">
     <table class="table table-striped">
       <thead>
         <th>Setting</th><th>Values</th>
@@ -12,15 +12,17 @@
 		{% for key, value in currentSettings.iteritems() %}
 		<tr><td>{{ key }}</td>
 		<td><ul class="list-unstyled">
-		<li>{{ value }}</li>            	
+        <!-- <li>{{ value }}</li> -->
+        <li><input type="checkbox" id="checkbox" name={{ key }} {% if value=='True' %}checked{% else %}{% endif %}/></li>            	
           </ul></td></tr>
         	{% endfor %}
 	{% endif %}
       </tbody>
     </table>	 
-
-
-
+    <input type="submit" value="Apply Changes"></input>
+</form>
+    
+<!--
 <h3>SAML Security Settings</h2>
 <form action="/update" method="post">
     <label>Want Messages Signed: </label> <input type="checkbox" id="checkbox" name="wantMessagesSigned"/><br />
@@ -31,5 +33,5 @@
     <input type="submit" value="Apply Changes"></input>
 </form>
 <br />
-
+-->
 {% endblock %}
