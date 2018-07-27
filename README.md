@@ -26,3 +26,5 @@ Admin user:
 To upgrade priviledges after logging in as the 'yogi' user change the group membership in the SAML message from 'users' to 'admin'
 
 More details/instructions are in the works.
+
+Shout out to E.D. for initial dockerization of the idp.
