@@ -21,17 +21,6 @@
     </table>	 
     <input type="submit" value="Apply Changes"></input>
 </form>
-    
-<!--
-<h3>SAML Security Settings</h2>
-<form action="/update" method="post">
-    <label>Want Messages Signed: </label> <input type="checkbox" id="checkbox" name="wantMessagesSigned"/><br />
-<label>Valid Message Signatures: </label> <input type="checkbox" id="checkbox" name="validMessage"/><br />
-    <label>Want Assertions Signed: </label> <input type="checkbox" id="checkbox" name="wantAssertionsSigned"/><br />
- <label>Valid Assertion Signatures: </label> <input type="checkbox" id="checkbox" name="validAssertion"/><br />
-    <label>Want Metadata Signed: </label> <input type="checkbox" id="checkbox" name="signMetadata"><br />
-    <input type="submit" value="Apply Changes"></input>
-</form>
-<br />
--->
+<p>*Note CVE-2017-11427 applies to the particular library used for this application (the onelogin python library). Other CVEs exist for this vulnerability.</p>
+<p>**Note CVE-2017-11427 has not been patched yet in the library in the application. The text box above does nothing currently.</p>
 {% endblock %}

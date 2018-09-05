@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p>Please fill out the form below to file a complaint</p>
+<form action="/newcomplaint" method="post">
+    <table class="table table-striped">
+	<tbody>
+		<tr>
+            <td>Complaint:</td>
+		    <td><input type="text" id="complaintDescription" name="complaintDescription"></td>          	
+        </tr>
+        <tr>
+            <td>Severity:</td>
+            <td><input type="text" id="severity" name="severity"></td>          	
+        </tr>
+        <tr>
+            <td>Victim:</td>
+            <td><input type="text" id="victim" name="victim"></td>          	
+        </tr>
+      </tbody>
+    </table>	 
+    <input type="submit" value="File Complaint"></input>
+</form>
+
+
+{% endblock %}
+
+

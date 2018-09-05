@@ -4,36 +4,53 @@
 
 {% if paint_logout %}
   {% if attributes %}
-    {% for attr in attributes %}
-      {% if attr.0 == 'memberOf' %}
-        {% for val in attr.1 %}
-          {% if val == 'administrators' %}
-            <h2>Welcome Administrative User!</h2>
-            <p>You are in the <b>admin</b> group.</p>
-            <p>If this were a real application you would have full administrative access. Fortunately for us, this is just a demo app and there is nothing to do.</p>
-            <center>(\_/)<br />
-              ( •,•)<br />
-              (")_(")</center>
-          {% else %}
-            <p>You are <b>not</b> an admin you are currently a member of the '{{ val }}' group.</p>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-  <hr>
-    <p>You have the following attributes:</p>
+    <p>Profile:</p>
     <table class="table table-striped">
       <thead>
         <th>Name</th><th>Values</th>
       </thead>
       <tbody>
         {% for attr in attributes %}
-          <tr><td>{{ attr.0 }}</td>
+          {% if attr.0 == 'username' %}
+            <tr><td>Username:</td>
+            <td><ul class="list-unstyled">
+              {% for val in attr.1 %}
+                <li>{{ val }}</li>
+              {% endfor %}
+            </ul></td></tr>
+          {% endif %}
+          {% if attr.0 == 'memberOf' %}
+          <tr><td>Group Membership:</td>
           <td><ul class="list-unstyled">
             {% for val in attr.1 %}
               <li>{{ val }}</li>
             {% endfor %}
           </ul></td></tr>
+          {% endif %}
+          {% if attr.0 == 'firstName' %}
+          <tr><td>First Name:</td>
+          <td><ul class="list-unstyled">
+            {% for val in attr.1 %}
+              <li>{{ val }}</li>
+            {% endfor %}
+          </ul></td></tr>
+          {% endif %}
+          {% if attr.0 == 'lastName' %}
+          <tr><td>Last Name:</td>
+          <td><ul class="list-unstyled">
+            {% for val in attr.1 %}
+              <li>{{ val }}</li>
+            {% endfor %}
+          </ul></td></tr>
+          {% endif %}
+          {% if attr.0 == 'emailAddress' %}
+          <tr><td>Email Address:</td>
+          <td><ul class="list-unstyled">
+            {% for val in attr.1 %}
+              <li>{{ val }}</li>
+            {% endfor %}
+          </ul></td></tr>
+          {% endif %}
         {% endfor %}
       </tbody>
     </table>

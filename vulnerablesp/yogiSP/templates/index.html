@@ -12,38 +12,27 @@
     </ul>
   </div>
 {% endif %}
-<p>This application is designed to help show some of the pitfalls that can come when configuring applicaitons with modern authentication.</p>
-<p>The SAML login button below will route to your configured idp for authentication. Depending on how the application is configured you may be able to edit the response.</p>
-<p>The 'Learn More' page explains these configurations and the importance of them.</p>
+
 {% if not_auth_warn %}
   <div class="alert alert-danger" role="alert">Not authenticated</div>
 {% endif %}
-
 {% if success_slo %}
   <div class="alert alert-success" role="alert">Successfully logged out</div>
 {% endif %}
 
-{% if paint_logout %}
-	{% if attributes %}
-		<table class="table table-striped">
-      		<thead>
-        	<th>Name</th><th>Values</th>
-      		</thead>
-      		<tbody>
-        	{% for attr in attributes %}
-          		<tr><td>{{ attr.0 }}</td>
-          		<td><ul class="list-unstyled">
-            		{% for val in attr.1 %}
-              		<li>{{ val }}</li>
-            		{% endfor %}
-          		</ul></td></tr>
-        	{% endfor %}
-      		</tbody>
-    		</table>
-  	{% else %}
-    		<div class="alert alert-danger" role="alert">You don't have any attributes</div>
-  	{% endif %}
-{% endif %}
+<center>
+	<h3>Has this bear stolen your lunch, picnic basket, or other consumable goods?</h3>
+	<img src="/static/images/yogi-stealing.png" style="width:40%;height:40%;">
+</center>
+
+<p>If he has please file a complaint. The staff at Jellystone utlize these metrics to track unwanted behavior. Unfortunatly, if it continues we will be forced to relocate Yogi to a new home.</p>
+<p>It is vital that these metrics are accurate. PLEASE report any misbehavings that you witness or are a victim of. You can report an issue on the complaints tab above.</p>
+
+
+
+
+
+
 
 {% endblock %}
 

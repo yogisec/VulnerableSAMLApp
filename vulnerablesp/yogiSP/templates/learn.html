@@ -2,7 +2,42 @@
 
 {% block content %}
 
-<p>Eventually this page will have detailed information in regards to SAML and testing SAML. For now please use the links below to get moving.</p>
+<p>This application is designed to help show some of the pitfalls that can come when configuring applicaitons to use SAML.</p>
+<p>Please note that while the application is designed to show serveral of the things that can be done wrong to make an application vulnerable. There is nothing inheriently wrong with utilizing it if implemented properly.</p>
+<table class="table table-striped">
+        <thead>
+                <th>Terms</th><th></th>
+            </thead>
+            <tbody>
+                <tr><td>Identity Provider (IDP)</td>
+                <td><ul class="list-unstyled">
+                <li>This is the server that handles the authentication. In the current environment the IDP is the 'Jellystone IDP.' This is who you prove you are who you say you are to. An IDP may have back end connections to AD, or it could check against another database of users. IDPs can also help to easily implment mutli-factor authentication. Removing the burden from the application developer.</li>            	
+                </ul></td></tr>
+    
+                <tr><td>Service Provider (SP)</td>
+                <td><ul class="list-unstyled">
+                <li>This is the application a user is trying to access. In the case of the application the SP is the 'Yogi's SAML App'.</li>            	
+                </ul></td></tr>
+                <tr><td>Client</td>
+                    <td><ul class="list-unstyled">
+                    <li>This is you. A client is anyone or anything that is sending a request to the SP. </li>            	
+                    </ul></td></tr>
+            </tbody>
+        </table>
+
+<h2>Authentication Flows</h2>
+<center><img src="/static/images/environment.png" style="width:60%;height:60%;"></center>
+
+<p>The most important thing is to make sure that a service provider (web app, etc.) is checking to make sure that the messages from the Identity Provider(IDP) are signed, and valid.</p>
+<p>If the messages are no signed, or are signed but not valid the application should reject them.
+    <ul>
+        <li>Remove the signature and edit attributes</li>
+        <li>Leave the signature and edit attributes</li>
+        <li>Edit the attributes and resign it with my own signature</li>
+    </ul>
+    Each of those actions should result in a login failure being generated.
+</p>
+<h1>Helpful References:</h1>
     <table class="table table-striped">
         <thead>
             <th>Description</th><th>Page</th>
@@ -10,13 +45,17 @@
         <tbody>
             <tr><td>RFC for SAML 2.0</td>
             <td><ul class="list-unstyled">
-            <li>https://tools.ietf.org/html/rfc7522</li>            	
+            <li>https://tools.ietf.org/html/rfc6595</li>            	
             </ul></td></tr>
 
             <tr><td>Common SAML Implementation Issues</td>
             <td><ul class="list-unstyled">
             <li>https://research.aurainfosec.io/bypassing-saml20-SSO/</li>            	
             </ul></td></tr>
+            <tr><td>XML Comment SAML Vulnerability</td>
+                <td><ul class="list-unstyled">
+                <li>https://duo.com/blog/duo-finds-saml-vulnerabilities-affecting-multiple-implementations</li>            	
+                </ul></td></tr>
         </tbody>
     </table>	
 <br />

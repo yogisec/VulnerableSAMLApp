@@ -24,6 +24,7 @@
 	<div class="container">
 		<ul class="nav navbar-nav">
 		<p class="navbar-text"><a href="/">Yogi's Saml App</a></p>
+			<li><a href="/complaints">Complaints</a></li>
 		  <li><a href="/settings">Saml Settings</a></li>
 		  <li><a href="/learn">Learn More</a></li>
 		{% if paint_logout %}
@@ -31,7 +32,7 @@
 				{% for attr in attributes %}
 					{% if attr.0 == 'firstName' %}
 						{% for val in attr.1 %}
-						<p class="navbar-text navbar-right">Singed in as: {{ val }}</p>
+						<p class="navbar-text navbar-right">Singed in as: <a href=/attrs>{{ val }}</a></p>
 						{% endfor %}
 					{% endif %}
 				{% endfor %}
@@ -40,7 +41,7 @@
 		{% if paint_logout %}
 			<li><a href="/?slo">Logout</a></li>
 		{% else %}
-			<li><a href="/?sso2">Login and access to attrs page</a></li>
+			<li><a href="/?sso2">Login</a></li>
 		{% endif %}
 		</ul>
 	</div>

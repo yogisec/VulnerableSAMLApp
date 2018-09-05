@@ -12,6 +12,7 @@
         "wantNameId" : false,
         "wantNameIdEncrypted": false,
         "wantAssertionsEncrypted": false,
+        "cve-2017-11427":false,
         "signatureAlgorithm": "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
         "digestAlgorithm": "http://www.w3.org/2000/09/xmldsig#sha1"
     },

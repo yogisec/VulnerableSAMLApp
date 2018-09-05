@@ -1,4 +1,7 @@
+from __future__ import print_function
 import os
+import sys
+
 
 from flask import (Flask, request, render_template, redirect, session,
                    make_response)
@@ -10,9 +13,13 @@ from onelogin.saml2.utils import OneLogin_Saml2_Utils
 
 from jsonparse import jsonEditor
 from jsonparse import jsonReader
+from jsonparse import complaintReader
+from csvparse import csvComplaintReader
+from csvparse import csvComplaintWriter
+from csvparse import csvComplaintDelete
 #from customforms import SamlSettings
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'onelogindemopytoolkit'
 app.config['SAML_PATH'] = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'saml')
 
@@ -107,9 +114,6 @@ def attrs():
         paint_logout = True
         if len(session['samlUserdata']) > 0:
             attributes = session['samlUserdata'].items()
-
-    print('PaintLogout Attrs - ' + str(paint_logout))
-    print('Attributes Attrs - ' + str(attributes))
     return render_template('attrs.html', paint_logout=paint_logout,
                            attributes=attributes)
 
@@ -140,15 +144,12 @@ def settingsPage():
     attributes = False
 
     if 'samlUserdata' in session:
-	paint_logout = True
-	if len(session['samlUserdata']) > 0:
-            attributes = session['samlUserdata'].items()
-    
-    print('PaintLogout Settings - ' + str(paint_logout))
-    print('Attributes Settings - ' + str(attributes))
-    
+        paint_logout = True
+        if len(session['samlUserdata']) > 0:
+                attributes = session['samlUserdata'].items()
+
     currentSettings = jsonReader()
-    print(str(currentSettings))
+
     return render_template('settings.html', paint_logout=paint_logout,
 			attributes=attributes,currentSettings=currentSettings)
 
@@ -158,18 +159,48 @@ def update():
     wantAssertionsSigned = 'wantAssertionsSigned' in request.form
     signMetadata = 'signMetadata' in request.form
     validMessage = 'validMessage' in request.form
-    validAssertion = 'validAssertion' in request.form 
-
-    print('Form Submitted')
-    print('wantMessagesSigned = ' + str(wantMessagesSigned))
-    print('wantAssertionsSigned = ' + str(wantAssertionsSigned))
-    print('signMetadata = ' + str(signMetadata))
-    print('validMessage = ' + str(validMessage))
-    print('validAssertion = ' + str(validAssertion))
+    validAssertion = 'validAssertion' in request.form
+    cve201711427 = 'cve-2017-11427' in request.form 
         
-    jsonEditor(wantMessagesSigned,wantAssertionsSigned,signMetadata,validMessage,validAssertion)
+    jsonEditor(wantMessagesSigned,wantAssertionsSigned,signMetadata,validMessage,validAssertion,cve201711427)
 
     return redirect('/settings/')
+
+@app.route('/filecomplaint/')
+def filecomplaint():
+    paint_logout = False
+    attributes = False
+
+    if 'samlUserdata' in session:
+	    paint_logout = True
+
+    return render_template('filecomplaint.html', paint_logout=paint_logout, attributes=attributes)
+
+@app.route('/newcomplaint', methods=['POST'])
+def newcomplaint():
+    complaint = request.form['complaintDescription']
+    severity = request.form['severity']
+    victim = request.form['victim']
+    
+    csvData = str(complaint) + ','  + str(severity) + ',' + str(victim)
+    csvComplaintWriter(csvData)
+
+    return redirect('/complaints/')
+
+@app.route('/deletecomplaints/')
+def deletcomplaints():
+    if 'samlUserdata' in session:
+        if len(session['samlUserdata']) > 0:
+            attributes = session['samlUserdata'].items()
+            for attr in attributes:
+                if attr[0] == 'memberOf':
+                    if attr[1][0] == 'administrators':
+                        csvComplaintDelete()
+                if attr[0] == 'username':
+                    if attr[1][0] == 'admin':
+                        csvComplaintDelete()
+            #print(str(attributes), file=sys.stderr)
+    return redirect('/complaints/')
 
 @app.route('/learn/')
 def learnPage():
@@ -180,6 +211,19 @@ def learnPage():
 	    paint_logout = True
 
     return render_template('learn.html', paint_logout=paint_logout, attributes=attributes)
+
+@app.route('/complaints/')
+def complaints():
+    paint_logout = False
+    attributes = False
+
+    if 'samlUserdata' in session:
+        paint_logout = True
+        if len(session['samlUserdata']) > 0:
+                attributes = session['samlUserdata'].items()
+    complaintDic = csvComplaintReader()
+
+    return render_template('complaints.html', paint_logout=paint_logout,attributes=attributes,complaintDic=complaintDic)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000, debug=True)
