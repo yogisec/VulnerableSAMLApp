@@ -21,7 +21,7 @@ $metadata['__DYNAMIC:1__'] = array(
          * Authentication source to use. Must be one that is configured in
          * 'config/authsources.php'.
          */
-        'auth' => 'example-userpass',
+        'auth' => 'jelly-parks',
 
         /*
          * WARNING: SHA-1 is disallowed starting January the 1st, 2014.

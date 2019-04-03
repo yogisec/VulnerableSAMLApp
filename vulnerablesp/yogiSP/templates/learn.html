@@ -29,7 +29,7 @@
 <center><img src="/static/images/environment.png" style="width:60%;height:60%;"></center>
 
 <p>The most important thing is to make sure that a service provider (web app, etc.) is checking to make sure that the messages from the Identity Provider(IDP) are signed, and valid.</p>
-<p>If the messages are no signed, or are signed but not valid the application should reject them.
+<p>If the messages are not signed, or are signed but not valid the application should reject them.
     <ul>
         <li>Remove the signature and edit attributes</li>
         <li>Leave the signature and edit attributes</li>
@@ -42,7 +42,11 @@
         <thead>
             <th>Description</th><th>Page</th>
         </thead>
-        <tbody>
+        <tbody>            
+            <tr><td>Walkthrough of this app (Work in Progress)</td>
+            <td><ul class="list-unstyled">
+            <li>https://docs.jellyparks.com/modern-identity/saml</li>            	
+            </ul></td></tr>
             <tr><td>RFC for SAML 2.0</td>
             <td><ul class="list-unstyled">
             <li>https://tools.ietf.org/html/rfc6595</li>            	
@@ -56,6 +60,10 @@
                 <td><ul class="list-unstyled">
                 <li>https://duo.com/blog/duo-finds-saml-vulnerabilities-affecting-multiple-implementations</li>            	
                 </ul></td></tr>
+
+                
+
+
         </tbody>
     </table>	
 <br />

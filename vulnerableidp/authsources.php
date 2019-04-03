@@ -89,7 +89,7 @@ $config = array(
 
 
 
-    'example-userpass' => array(
+    'jelly-parks' => array(
         'exampleauth:UserPass',
 
         // Give the user an option to save their username for future login attempts
@@ -97,14 +97,7 @@ $config = array(
         //'remember.username.enabled' => FALSE,
         //'remember.username.checked' => FALSE,
 
-        'student:studentpass' => array(
-            'uid' => array('test'),
-            'eduPersonAffiliation' => array('member', 'student'),
-        ),
-        'employee:employeepass' => array(
-            'uid' => array('employee'),
-            'eduPersonAffiliation' => array('member', 'employee'),
-        ),
+
         'yogi:bear' => array(
             'memberOf' => array('users'),
             'emailAddress' => array('yogi@jellystonep.com'),
@@ -112,19 +105,19 @@ $config = array(
             'lastName' => array('Bear'),
             'username' => array('yogi'),
         ),
-        'admin:adminpassword' => array(
+        'admin:password' => array(
             'memberOf' => array('administrators'),
             'emailAddress' => array('admin@jellystonep.com'),
             'firstName' => array('Ranger'),
             'lastName' => array('Smith'),
             'username' => array('admin'),
         ),
-        'adminuser:fakeadmin' => array(
-            'memberOf' => array('administratorsbutnotreallyinthatgroup'),
-            'emailAddress' => array('fake-admin@jellystonep.com'),
-            'firstName' => array('Fake-Admin'),
-            'lastName' => array('Fake-Admin'),
-            'username' => array('adminuser'),
+        'rsmith:password' => array(
+            'memberOf' => array('administrators'),
+            'emailAddress' => array('rsmith@jellystonep.com'),
+            'firstName' => array('Ranger'),
+            'lastName' => array('Smith'),
+            'username' => array('rsmith'),
         ),
     ),
 

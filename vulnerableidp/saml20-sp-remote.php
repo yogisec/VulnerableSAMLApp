@@ -26,12 +26,12 @@ $metadata['google.com'] = array(
         'simplesaml.attributes' => FALSE,
 );
 
-$metadata['http://127.0.0.1:8000/metadata/'] = array (
-        'AssertionConsumerService' => 'http://127.0.0.1:8000/?acs',
-        'SingleLogoutService' => 'http://127.0.0.1:8000/?sls',
+$metadata['http://10.141.255.242:8000/metadata/'] = array (
+        'AssertionConsumerService' => 'http://10.141.255.242:8000/?acs',
+        'SingleLogoutService' => 'http://10.141.255.242:8000/?sls',
 );
 
-$metadata['http://127.0.0.1:8000/metadata'] = array (
-        'AssertionConsumerService' => 'http://127.0.0.1:8000/?acs',
-        'SingleLogoutService' => 'http://127.0.0.1:8000/?sls',
+$metadata['http://10.141.255.242:8000/metadata'] = array (
+        'AssertionConsumerService' => 'http://10.141.255.242:8000/?acs',
+        'SingleLogoutService' => 'http://10.141.255.242:8000/?sls',
 );

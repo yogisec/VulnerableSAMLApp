@@ -2,13 +2,13 @@
     "strict": true,
     "debug": true,
     "sp": {
-        "entityId": "http://127.0.0.1:8000/metadata/",
+        "entityId": "http://10.141.255.242:8000/metadata/",
         "assertionConsumerService": {
-            "url": "http://127.0.0.1:8000/?acs",
+            "url": "http://10.141.255.242:8000/?acs",
             "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
         },
         "singleLogoutService": {
-            "url": "http://127.0.0.1:8000/?sls",
+            "url": "http://10.141.255.242:8000/?sls",
             "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
         },
         "NameIDFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified",
