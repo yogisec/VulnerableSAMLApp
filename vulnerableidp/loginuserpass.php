@@ -9,16 +9,13 @@ if (strlen($this->data['username']) > 0) {
                                                                                                                            
                                                                                                                                                                                  
 ?>                                                                                                                                                                               
-                                                                                                                                                                                 
+
+
+<!-- This is the block of code responsible for the login failure message -->
 <?php                                                                                                                                                                            
 if ($this->data['errorcode'] !== null) {                                                                                                                                         
     ?>                                                                                                                                                                           
-    <div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">                                                                          
-        <img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png"                                                               
-             class="float-l erroricon" style="margin: 15px" alt=""/>                                                                                                             
-                                                                                                                                                                                 
-        <h2><?php echo 'WORKS' ?></h2>                                                                                                                 
-                                                                                                                                                                                 
+    <div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">                                                                                                                                                                   
         <p><strong><?php                                                                                                                                                         
                 echo htmlspecialchars($this->t(                                                                                                                                  
                     '{errors:title_'.$this->data['errorcode'].'}',                                                                                                               
