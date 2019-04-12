@@ -1,11 +1,16 @@
-import json
-import os
+import csv
+import codecs
 import io
+import random
+import json
+import time
 
+
+#### Update the settings stored in the settings file.
+#### This is the file that controls the security levels for the application
 def jsonEditor(wantMessagesSigned,wantAssertionsSigned,signMetadata,validMessage,validAssertion,cve201711427):
 
     filename = 'saml/advanced_settings.json'
-    # Read JSON file
     with open(filename) as data_file:
         data_loaded = json.load(data_file)
         data_file.close()
@@ -25,11 +30,11 @@ def jsonEditor(wantMessagesSigned,wantAssertionsSigned,signMetadata,validMessage
         json.dump(data_loaded, file, indent=2)
     data_file.close()
 
-    # Read JSON file
     with open(filename) as data_file:
         data_loaded = json.load(data_file)
         data_file.close()
 
+#### Read in the current settings and display them on the page
 def jsonReader():
     filename = 'saml/advanced_settings.json'
 
@@ -47,16 +52,43 @@ def jsonReader():
     settingValues = {'wantMessagesSigned':str(wantMessagesSigned),'wantAssertionsSigned':str(wantAssertionsSigned),'signMetadata':str(signMetadata),'validMessage':str(validMessage),'validAssertion':str(validAssertion),'cve-2017-11427':str(cve201711427)}
     return settingValues
 
-def complaintReader():
+#### ---- Everything below this is responsibile for the Complaints page and associated functionality ---- ####
+
+#### Porting from CSV to JSON for greater flexibility.....glen might have been right, this one time
+#### Read in all of the current complaints
+def jsonComplaintReader():
+    complaintFilename = 'complaints/complaints.json'
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
+        return data
+
+#### Write a new complaint to the json db file
+def jsonComplaintWriter(newComplaint):
     complaintFilename = 'complaints/complaints.json'
 
-    with open(complaintFilename) as complaint_file:
-        complaint_loaded = json.load(complaint_file)
-        complaintDescription = complaint_loaded['description']
-        complaintComplainer = complaint_loaded['complainer']
-        complaintSeverity = complaint_loaded['severity']
+    #read in the entire file stick it into a variable
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
     complaint_file.close()
-	
-    complaintValues = {'complaintDescription':str(complaintDescription),'complaintComplainer':str(complaintComplainer),'complaintSeverity':str(complaintSeverity)}
-    return complaintValues
+
+    data.append(newComplaint)
+    stringBlob = json.dumps(data)
+    with open(complaintFilename, 'w') as complaint_file:
+        complaint_file.write(stringBlob)
+
+#### Delete 1 entry based on the 'id' number
+def jsonSingleComplaintDelete(complaintID):
+    complaintFilename = 'complaints/complaints.json'
     
+    #read in the entire file stick it into a variable
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
+    complaint_file.close()
+
+    for entry in data:
+        if entry['id'] == complaintID:
+            data.remove(entry)
+    
+    stringBlob = json.dumps(data)
+    with open(complaintFilename, 'w') as complaint_file:
+        complaint_file.write(stringBlob)

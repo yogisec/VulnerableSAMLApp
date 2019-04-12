@@ -1,6 +1,9 @@
 import csv
 import codecs
 import io
+import random
+import json
+import time
 
 def csvComplaintReader():
     complaintFilename = 'complaints/complaints.csv'
@@ -18,7 +21,7 @@ def csvComplaintWriter(csvData):
     print(str(csvData))
     with open(complaintFilename, 'a') as complaint_file:
         #csv_writer = csv.writer(complaint_file)
-        complaint_file.write(csvData + '\n')
+        complaint_file.write(str(random.randint(1,2000)) + ',' + csvData + '\n')
         
     complaint_file.close()
 
@@ -29,3 +32,48 @@ def csvComplaintDelete():
         complaint_file.write('')
 
     complaint_file.close()
+
+def SingleCSVComplaintDelete(complaintID):
+    complaintFilename = 'complaints/complaints.csv'
+
+    with open(complaintFilename, 'w') as f:
+        writer = csv.writer(f)
+        for row in csv.reader(f):
+            if row[0] == complaintID:
+                writer.writerow('')
+
+#### Porting from CSV to JSON for greater flexibility.....glen might have been right, this one time
+def jsonComplaintReader():
+    complaintFilename = 'complaints/complaints.json'
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
+        return data
+
+def jsonComplaintWriter(newComplaint):
+    complaintFilename = 'complaints/complaints.json'
+
+    #read in the entire file stick it into a variable
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
+    complaint_file.close()
+
+    data.append(newComplaint)
+    stringBlob = json.dumps(data)
+    with open(complaintFilename, 'w') as complaint_file:
+        complaint_file.write(stringBlob)
+
+def jsonSingleComplaintDelete(complaintID):
+    complaintFilename = 'complaints/complaints.json'
+    
+    #read in the entire file stick it into a variable
+    with open(complaintFilename,'r') as complaint_file:
+        data = json.load(complaint_file)
+    complaint_file.close()
+
+    for entry in data:
+        if entry['id'] == complaintID:
+            data.remove(entry)
+    
+    stringBlob = json.dumps(data)
+    with open(complaintFilename, 'w') as complaint_file:
+        complaint_file.write(stringBlob)

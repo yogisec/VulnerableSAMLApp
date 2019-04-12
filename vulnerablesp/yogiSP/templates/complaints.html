@@ -7,30 +7,28 @@
 
     <table class="table table-striped">
       <thead>
-        <th>Complaint</th><th>Severity</th><th>Victim</th>
+        <th>ID</th><th>Complaint</th><th>Severity</th><th>Victim</th>
       </thead>
         <tbody>
-        {% if complaintDic %}
-            {% for value in complaintDic %}
+            {% for dict_item in dictionary %}
             <tr>
-            <td>
-                <ul class="list-unstyled">
-                    <li>{{ value[0] }}</li>        	
-                </ul>
-            </td>
-            <td>
-                <ul class="list-unstyled">
-                     <li>{{ value[1] }}</li>        	
-                </ul>
-            </td>
-            <td>
-                <ul class="list-unstyled">
-                    <li>{{ value[2] }}</li>        	
-                </ul>
-            </td>
+                <td>{{ dict_item['id'] }}</td>
+                <td>{{ dict_item['description'] }}</td>
+                <td>{{ dict_item['severity'] }}</td>
+                <td>{{ dict_item['complainer'] }}</td>
+                {% if attributes %}
+                    {% for attr in attributes %}
+                        {% if attr.0 == 'memberOf' %}
+                            {% for val in attr.1 %}
+                                {% if val == 'administrators' %}
+                                    <td><a href="/deletecomplaint?id={{ dict_item['id'] }}" class="btn btn-default">Delete</a></td>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %} 
             </tr>
             {% endfor %}
-        {% endif %}
         </tbody>
     </table>
 <a href="/filecomplaint" class="btn btn-default">File A New Complaint</a>
@@ -38,8 +36,8 @@
     {% for attr in attributes %}
         {% if attr.0 == 'memberOf' %}
             {% for val in attr.1 %}
-                {% if val == 'administrators' %}
-                    <a href="/deletecomplaints" class="btn btn-default">Delete Complaints</a>
+                {% if val == 'PlatformConfiguration' %}
+                    <a href="/restorecomplaints" class="btn btn-default">Restore Complaints</a>
                 {% endif %}
             {% endfor %}
         {% endif %}
