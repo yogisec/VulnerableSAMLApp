@@ -22,9 +22,16 @@ Admin user:
   Username: admin
   Password: password
   ```
+
+Instructor user that can adjust security levels:
+  ```
+  Username: instructor
+  Password: G0od-LuckGu3ssingThisButHeyItCouldHappenRight?
+  ```
+
 To upgrade privileges after logging in as the 'yogi' user change the group membership in the SAML message from 'users' to 'admin'
 
-if you'd like to change the user accounts, or the groups around edit the authsources.php file. All user accounts are statically assigned and created within that file.
+If you'd like to change the user accounts, or the groups around edit the authsources.php file. All user accounts are statically assigned and created within that file.
 
 Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made first:
 VulnerableSAMLApp/vulnerableidp/saml20-sp-remote.php
@@ -34,8 +41,14 @@ In the saml20-sp-remote.php file change every instance of '127.0.0.1:8000' with 
 
 VulnerableSAMLApp/vulnerablesp/yogiSP/saml/settings.json
 ```
-In the settings.json file within the SP section replace the '127.0.0.1:8000' with your web applications ip. Within the IDP section you'll also need to replace 
-the '127.0.0.1' address with the address of the IDP server.
+In the settings.json file within the SP section replace the '127.0.0.1:8000' with your web applications ip.
+Within the IDP section you'll also need to replace the '127.0.0.1' address with the address of the IDP server.
+```
+
+To change the port the vulnerable application is listening on:
+```
+In vulnerablesp/yogiSP/vulnsp.py update the port on the last line.
+In vulnerablesp/yogiSP/vulnsp.ini update http = :8000 with the new port.
 ```
 
 More details/instructions are in the works.

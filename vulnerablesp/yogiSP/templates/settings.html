@@ -2,17 +2,35 @@
 
 {% block content %}
 <p>Here you can adjust the security settings for this application.</p>
+<!--
+<form action="/update" method="post"></form>
+<table class="table table-striped">
+    <thead>
+      <th>Setting</th><th>Value</th>
+    </thead>
+    <tbody>
+      <tr><td>Want messages signed?</td><td><input type="checkbox" id="checkbox" name=wantMessagesSigned {% if currentSettings['wantMessagesSigned']=='True' %}checked{% else %}{% endif %}/></td></tr>
+      <tr><td>Want message signatures validated?</td><td><input type="checkbox" id="checkbox" name=validMessage {% if currentSettings['validMessage']=='True' %}checked{% else %}{% endif %}/></td></tr>
+      <tr><td>Want assertions signed?</td><td><input type="checkbox" id="checkbox" name=wantAssertionsSigned {% if currentSettings['wantAssertionsSigned']=='True' %}checked{% else %}{% endif %}/></td></tr>
+      <tr><td>Want assertions signatures validated?</td><td><input type="checkbox" id="checkbox" name=validAssertion {% if currentSettings['validAssertion']=='True' %}checked{% else %}{% endif %}/></td></tr>
+      <tr><td>Vulnerable to CVE-2017-11427?</td><td><input type="checkbox" id="checkbox" name=cve-2017-11427 {% if currentSettings['cve-2017-11427']=='True' %}checked{% else %}{% endif %}/></td></tr>  
+    </tbody>
+  </table>
+  <input type="submit" value="Apply Changes"></input>
+</form>
+-->
+
 <form action="/update" method="post">
-    <table class="table table-striped">
-      <thead>
-        <th>Setting</th><th>Values</th>
-      </thead>
+  <table class="table table-striped">
+    <thead>
+      <th>Setting</th><th>Values</th>
+    </thead>
 	<tbody>
 	{% if currentSettings %}
 		{% for key, value in currentSettings.iteritems() %}
 		<tr><td>{{ key }}</td>
 		<td><ul class="list-unstyled">
-        <!-- <li>{{ value }}</li> -->
+        
         <li><input type="checkbox" id="checkbox" name={{ key }} {% if value=='True' %}checked{% else %}{% endif %}/></li>            	
           </ul></td></tr>
         	{% endfor %}
@@ -21,6 +39,11 @@
     </table>	 
     <input type="submit" value="Apply Changes"></input>
 </form>
+
+<hr />
 <p>*Note CVE-2017-11427 applies to the particular library used for this application (the onelogin python library). Other CVEs exist for this vulnerability.</p>
 <p>**Note CVE-2017-11427 has not been patched yet in the library in the application. The text box above does nothing currently.</p>
+
+
+
 {% endblock %}

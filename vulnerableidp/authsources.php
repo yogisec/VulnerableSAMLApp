@@ -119,6 +119,13 @@ $config = array(
             'lastName' => array('Smith'),
             'username' => array('rsmith'),
         ),
+        'adminbutnot:password' => array(
+            'memberOf' => array('users'),
+            'emailAddress' => array('rsmith@jellystonep.com'),
+            'firstName' => array('Ranger'),
+            'lastName' => array('Smith'),
+            'username' => array('rsmith'),
+        ),
         'instructor:G0od-LuckGu3ssingThisButHeyItCouldHappenRight?' => array(
             'memberOf' => array('PlatformConfiguration'),
             'emailAddress' => array('rsmith@jellystonep.com'),
