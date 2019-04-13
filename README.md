@@ -50,6 +50,7 @@ To change the port the vulnerable application is listening on:
 In vulnerablesp/yogiSP/vulnsp.py update the port on the last line.
 In vulnerablesp/yogiSP/vulnsp.ini update http = :8000 with the new port.
 In the SP Dockerfile change the EXPOSE port to the new port.
+You'll also need to change the port in the docker-compose file (if using it)
 ```
 
 More details/instructions are in the works.
