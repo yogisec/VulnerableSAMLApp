@@ -23,6 +23,12 @@ Admin user:
   Password: password
   ```
 
+User accout for CVE2017-11427
+  ```
+  Username: adminbutnot
+  Password: password
+  ```
+
 Instructor user that can adjust security levels:
   ```
   Username: instructor

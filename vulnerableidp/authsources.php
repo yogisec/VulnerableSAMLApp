@@ -121,10 +121,10 @@ $config = array(
         ),
         'adminbutnot:password' => array(
             'memberOf' => array('users'),
-            'emailAddress' => array('rsmith@jellystonep.com'),
-            'firstName' => array('Ranger'),
-            'lastName' => array('Smith'),
-            'username' => array('rsmith'),
+            'emailAddress' => array('barney.rubble@bedrock.com'),
+            'firstName' => array('Barney'),
+            'lastName' => array('Rubble'),
+            'username' => array('brubble'),
         ),
         'instructor:G0od-LuckGu3ssingThisButHeyItCouldHappenRight?' => array(
             'memberOf' => array('PlatformConfiguration'),
