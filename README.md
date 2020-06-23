@@ -53,7 +53,7 @@ File: `VulnerableSAMLApp/vulnerableidp/saml20-sp-remote.php`
 
 Change:
 ```
-Replace every instance of '127.0.0.1:8000' with the ip of the host hosting the web application ip.
+Replace every instance of '127.0.0.1:8000' with the ip of the host hosting the web application.
 ```
 
 Lets build the Docker image:
@@ -75,7 +75,7 @@ sudo docker ps
 
 Out put should have something similar to this:
 ```
-189adee1b091  localhost/idp:1.0               apache2ctl -D FOR...  2 seconds ago  Up 2 seconds ago  0.0.0.0:80->80/tcp  idp
+189adee1b091  localhost/idp:1.0  apache2ctl -D FOR...  2 seconds ago  Up 2 seconds ago  0.0.0.0:80->80/tcp  idp
 ```
 
 Confirm idp is listening:
