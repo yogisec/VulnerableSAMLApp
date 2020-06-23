@@ -1,15 +1,7 @@
 FROM ubuntu:bionic
 
 RUN apt-get update -y
-RUN apt-get install -y python2.7
-RUN apt-get install -y python2.7-dev
-RUN apt-get install -y libxmlsec1
-RUN apt-get install -y libxmlsec1-dev
-RUN apt-get install -y git
-RUN apt-get install -y python-pip
-RUN apt-get install -y python-dev
-RUN apt-get install -y build-essential
-RUN apt-get install -y nginx
+RUN apt-get install -y python2.7 python2.7-dev libxmlsec1 libxmlsec1-dev git python-pip python-dev build-essential nginx
 RUN pip install --upgrade pip
 RUN pip install -U setuptools
 
