@@ -43,7 +43,7 @@ To upgrade privileges after logging in as the 'yogi' user change the group membe
 If you'd like to change the user accounts, or the groups around edit the `vulnerableidp/authsources.php` file. All user accounts are statically assigned and created within that file.
 
 
-## Splitting the Deployment to multiple hosts:
+## Splitting the Deployment to Multiple Hosts:
 
 Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made before you build the images first:
 
@@ -73,7 +73,7 @@ Confirm container is running:
 sudo docker ps
 ```
 
-Out put should have something similar to this:
+Output should have something similar to this:
 ```
 189adee1b091  localhost/idp:1.0  apache2ctl -D FOR...  2 seconds ago  Up 2 seconds ago  0.0.0.0:80->80/tcp  idp
 ```
@@ -109,6 +109,11 @@ sudo docker run -it --rm --name sp -d -p 8000:8000 sp:1.0
 Confirm container is running:
 ```
 sudo docker ps
+```
+
+Output should be similar to this:
+```
+94476aee1abf    sp:1.1    "uwsgi --ini vulnsp.…"   4 minutes ago    Up 4 minutes    0.0.0.0:8000->8000/tcp    sp
 ```
 
 Confirm web application is listening:
