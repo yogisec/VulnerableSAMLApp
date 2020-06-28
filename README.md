@@ -23,12 +23,12 @@ To login as an unpriviledged user:
 Admin user:
   ```
   Username: admin
-  Password: password
+  Password: this-is-the-administrator-pasword-oh-no-is-that-a-typo-in-password
   ```
 
 User accout for CVE2017-11427
   ```
-  Username: adminbutnot
+  Username: brubble
   Password: password
   ```
 

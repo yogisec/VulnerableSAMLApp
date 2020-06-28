@@ -105,7 +105,7 @@ $config = array(
             'lastName' => array('Bear'),
             'username' => array('yogi'),
         ),
-        'admin:password' => array(
+        'admin:this-is-the-administrator-pasword-oh-no-is-that-a-typo-in-password' => array(
             'memberOf' => array('administrators'),
             'emailAddress' => array('admin@jellystonep.com'),
             'firstName' => array('Ranger'),
@@ -119,8 +119,8 @@ $config = array(
             'lastName' => array('Smith'),
             'username' => array('rsmith'),
         ),
-        'adminbutnot:password' => array(
-            'memberOf' => array('users'),
+        'brubble:password' => array(
+            'memberOf' => array('administratorsbutnot'),
             'emailAddress' => array('barney.rubble@bedrock.com'),
             'firstName' => array('Barney'),
             'lastName' => array('Rubble'),
