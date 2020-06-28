@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 
 
 def sp_settings(json_file, sp_ip, idp_ip):
