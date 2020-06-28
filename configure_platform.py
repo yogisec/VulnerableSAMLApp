@@ -35,12 +35,15 @@ def build_docker(image_build):
     if image_build == 'idp':
         build = subprocess.Popen(['docker', 'build', '-t', 'idp:1.0', 'vulnerableidp/'])
         build.wait()
+        print('All done run the command below to start your newly built image:')
+        print(f'\t cd vulnerableidp && sudo docker run -it --rm --name {image_build} -d -p 80:80 {image_build}:1.0')
     else:
         build = subprocess.Popen(['docker', 'build', '-t', 'sp:1.0', 'vulnerablesp/'])
         build.wait()
+        subprocess.Popen(['docker', 'run', '-it', '--rm', '--name', 'sp', '-d', '-p', '8000:8000', 'sp:1.0'])
+        print('All done run the command below to start your newly built image:')
+        print(f'\t cd vulnerableidp && sudo docker run -it --rm --name {image_build} -d -p 8000:8000 {image_build}:1.0')
 
-    print('All done run the command below to start your newly built image:')
-    print(f'\t\t\t cd vulnerableidp && sudo docker run -it --rm --name {image_build} -d -p 80:80 {image_build}:1.0')
 
 
 def main():
