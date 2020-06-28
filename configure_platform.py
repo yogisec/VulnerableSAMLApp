@@ -70,7 +70,7 @@ def main():
         except Exception as e:
             print(f'Must be a Y or N: {e}')
 
-    if docker_direction = 'Y':
+    if docker_direction == 'Y':
         if os.geteuid() != 0:
             sys.exit('Please re-run this script with root privileges if you want to have it build the docker commands for you')
 
