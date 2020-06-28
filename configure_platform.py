@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+from shutil import copyfile
 
 
 def sp_settings(json_file, sp_ip, idp_ip):
@@ -30,23 +31,37 @@ def idp_settings(settings_file, sp_ip):
 
 
 def build_docker(image_build):
-    # Builds the docker image defined for the host. 
+    # Builds and runs the docker image defined for the host. 
     
     if image_build == 'idp':
         build = subprocess.Popen(['docker', 'build', '-t', 'idp:1.0', 'vulnerableidp/'])
         build.wait()
-        print('All done run the command below to start your newly built image:')
-        print(f'\t cd vulnerableidp && sudo docker run -it --rm --name {image_build} -d -p 80:80 {image_build}:1.0')
+        run = subprocess.Popen(['docker', 'run', '-it', '--rm', '--name', 'sp', '-d', '-p', '80:80', 'sp:1.0'])
+        run.wait()
+        check = subprocess.Popen(['docker', 'ps', '--filter', '--name', 'sp'])
+        check.wait()
+        print('\n All done run the IDP should be running now.')
+        print('To run the image manually after shutting it down use the command below:')
+        print(f'\t sudo docker run -it --rm --name {image_build} -d -p 80:80 {image_build}:1.0')
     else:
         build = subprocess.Popen(['docker', 'build', '-t', 'sp:1.0', 'vulnerablesp/'])
         build.wait()
-        subprocess.Popen(['docker', 'run', '-it', '--rm', '--name', 'sp', '-d', '-p', '8000:8000', 'sp:1.0'])
-        print('All done run the command below to start your newly built image:')
-        print(f'\t cd vulnerableidp && sudo docker run -it --rm --name {image_build} -d -p 8000:8000 {image_build}:1.0')
-
+        run = subprocess.Popen(['docker', 'run', '-it', '--rm', '--name', 'sp', '-d', '-p', '8000:8000', 'sp:1.0'])
+        run.wait()
+        check = subprocess.Popen(['docker', 'ps', '--filter', '--name', 'sp'])
+        check.wait()
+        print('\n All done the SP image should be running.')
+        print('To run the image manually after shutting it down use the command below:')
+        print(f'\t sudo docker run -it --rm --name {image_build} -d -p 8000:8000 {image_build}:1.0')
 
 
 def main():
+    # Reset the config files for each run to give people the ability to re-run this if they typo something
+    # saves them from having to re-clone repo or edit the files manually
+
+    copyfile('vulnerablesp/yogiSP/saml/settings.original','vulnerablesp/yogiSP/saml/settings.json')
+    copyfile('vulnerableidp/saml20-sp-remote.original','vulnerableidp/saml20-sp-remote.php')
+
     host_config_option = ''
     print(" Begining the configuration process. \n") 
 

@@ -1,5 +1,10 @@
 Vulnerable SAML infrastructure.
 
+A high level getting started guide is below, if you would like a more detailed guide, that covers the app, features, settings, and walkthroughs please check out:
+
+[Application Overview and Walkthrough](https://jellyparks.com/Web_Things/vulnerable_saml_app.html)
+[SAML Refresher](https://jellyparks.com/Web_Things/saml_overview.html)
+
 The purpose of these applications is to showcase how certain vulnerable configurations can be exploited to allow a user to change there permissions, name, etc. within an application. OneLogins python SAML library was utilized for this. In order for some of these vulnerable configurations to work the library was heavily modified.
 
 This configuration contains two docker images. The `vulnerableidp` is an identity provider. It contains a 'database' with a few different users.
@@ -45,9 +50,11 @@ If you'd like to change the user accounts, or the groups around edit the `vulner
 
 ## Splitting the Deployment to Multiple Hosts:
 
-Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made before you build the images first:
+Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made before you build the images first. The easiest thing to do is to run the configure_platform.py as a privileged user and follow the prompts for each of the hosts. If you allow it to run privileged the script will edit the configuration files for you, build the docker images, and launched them for you.
 
-### IDP Configuration Changes and Running:
+### Want to edit the files manually, continue below:
+
+#### IDP Configuration Changes and Running:
 
 File: `VulnerableSAMLApp/vulnerableidp/saml20-sp-remote.php`
 
@@ -84,7 +91,7 @@ Confirm idp is listening:
 curl http://127.0.0.1
 ```
 
-### Web Application Configuration Changes and Running:
+#### Web Application Configuration Changes and Running:
 
 File: `VulnerableSAMLApp/vulnerablesp/yogiSP/saml/settings.json`
 
