@@ -2,8 +2,8 @@ Vulnerable SAML infrastructure.
 
 A high level getting started guide is below, if you would like a more detailed guide, that covers the app, features, settings, and walkthroughs please check out:
 
-[Application Overview and Walkthrough](https://jellyparks.com/Web_Things/vulnerable_saml_app.html)
-[SAML Refresher](https://jellyparks.com/Web_Things/saml_overview.html)
+- [Application Overview and Walkthrough](https://jellyparks.com/Web_Things/vulnerable_saml_app.html)
+- [SAML Refresher](https://jellyparks.com/Web_Things/saml_overview.html)
 
 The purpose of these applications is to showcase how certain vulnerable configurations can be exploited to allow a user to change there permissions, name, etc. within an application. OneLogins python SAML library was utilized for this. In order for some of these vulnerable configurations to work the library was heavily modified.
 
