@@ -50,7 +50,7 @@ If you'd like to change the user accounts, or the groups around edit the `vulner
 
 ## Splitting the Deployment to Multiple Hosts:
 
-Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made before you build the images first. The easiest thing to do is to run the configure_platform.py as a privileged user and follow the prompts for each of the hosts. If you allow it to run privileged the script will edit the configuration files for you, build the docker images, and launched them for you.
+Want to set this up on seperate servers or point to an address that isn't localhost? A couple of changes need to be made before you build the images first. **The easiest thing to do is to run the configure_platform.py as a privileged user and follow the prompts for each of the hosts.** If you allow it to run privileged the script will edit the configuration files for you, build the docker images, and launched them for you.
 
 ### Want to edit the files manually, continue below:
 
@@ -131,17 +131,10 @@ curl http://127.0.0.1
 
 You should now be able to access the web application on port 8000 and authenticate through the IDP on port 80. Make sure that you have access to both hosts.
 
-## Changing the listening port for the 'yogi' SP application:
-To change the port the vulnerable application is listening on:
+## Want to change default security settings?
+Before building the container edit the /vulnerablesp/yogiSP/saml/advanced_settings.json file.
 
-```
-In vulnerablesp/yogiSP/vulnsp.py update the port on the last line.
-In vulnerablesp/yogiSP/vulnsp.ini update http = :8000 with the new port.
-In the SP Dockerfile change the EXPOSE port to the new port.
-You'll also need to change the port in the docker-compose file (if using it)
-```
-
-More details/instructions are in the works.
+Set values to True that you want to have loaded when the application runs. Once these settings are in, build the image and run it.
 
 ## TODO: 
 - Open User registration
