@@ -7,4 +7,4 @@ Jinja2== 2.10.1
 lxml==4.1.1
 MarkupSafe==1.0
 six==1.11.0
-Werkzeug==0.13
+Werkzeug==0.15.3
